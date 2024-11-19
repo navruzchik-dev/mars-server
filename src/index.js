@@ -3,6 +3,7 @@ const cors = require('cors');
 const connectDB = require('./config/database');
 const ApplicationRoutes = require('./routes/ApplicationsRoutes');
 const LayoutsRoutes = require("./routes/LayoutRoutes")
+require('dotenv').config()
 // const HeaderLayoutsRoutes = require("./routes/HeaderLayoutsRoutes")
 
 const app = express();
