@@ -1,4 +1,4 @@
-const Layout = require('../models/ApplicationsModels'); // Assuming Layout model is defined as in the previous step
+const Layout = require('../controllers/models/ApplicationsModels'); // Assuming Layout model is defined as in the previous step
 
 // Получить layout по имени
 const getLayout = async (req, res) => {

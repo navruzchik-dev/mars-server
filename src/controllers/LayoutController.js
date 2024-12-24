@@ -1,5 +1,6 @@
-const Layout = require("../models/LayoutModels");
+const Layout = require('../controllers/models/LayoutModels');
 
+// Функция для получения всех layouts
 const getLayouts = async (req, res) => {
     try {
         const layouts = await Layout.find();
@@ -9,18 +10,18 @@ const getLayouts = async (req, res) => {
     }
 };
 
+// Функция для создания нового layout
 const createLayout = async (req, res) => {
-    const { title, description, img } = req.body;
+    const { title, description } = req.body;
 
     if (!title || !description) {
         return res.status(400).json({ msg: "Please fill all required fields" });
     }
-    
+
     try {
         const layout = await Layout.create({
             title,
-            description,
-            img
+            description
         });
         res.status(201).json({ msg: "Layout created successfully", data: layout });
     } catch (error) {
@@ -28,16 +29,17 @@ const createLayout = async (req, res) => {
     }
 };
 
+// Обновление layout
 const updateLayout = async (req, res) => {
     const { id } = req.params;
-    const { title, description, img } = req.body;
+    const { title, description } = req.body;
 
-    if (!title || !description || img === undefined) {
+    if (!title || !description) {
         return res.status(400).json({ msg: "Please fill all required fields" });
     }
 
     try {
-        const layout = await Layout.findByIdAndUpdate(id, { title, description, img }, { new: true });
+        const layout = await Layout.findByIdAndUpdate(id, { title, description }, { new: true });
         if (!layout) {
             return res.status(404).json({ msg: "Layout not found" });
         }
@@ -47,6 +49,7 @@ const updateLayout = async (req, res) => {
     }
 };
 
+// Удаление layout
 const deleteLayout = async (req, res) => {
     const { id } = req.params;
 

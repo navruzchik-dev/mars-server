@@ -8,12 +8,7 @@ const layoutSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-  },
-  img:{
-  type: String,
-  required: false
   }
-    
 });
 
 module.exports = mongoose.model('Layout', layoutSchema);
